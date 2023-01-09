@@ -1,0 +1,310 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DHB.TabbedPage1"
+            Title="Создание персонажа"
+            
+            >
+    <!--Pages can be added as references or inline-->
+
+    <ContentPage Title="Класс">
+
+
+        <StackLayout>
+
+            <Label x:Name="Class_header" Text="Классы" FontSize="Medium" Margin="2, 15, 2, 10"/>
+            <Picker x:Name="picker" SelectedIndexChanged="picker_SelectedIndexChanged" Margin="10,5,15,2">
+                <Picker.Items>
+                    <x:String>Воин</x:String>
+                    <x:String>Плут</x:String>
+                    <x:String>Монах</x:String>
+                    <!--<x:String>Следопыт</x:String>
+                    <x:String>Колдун</x:String>
+                    <x:String>Жрец</x:String>
+                    <x:String>Паладин</x:String>
+                    <x:String>Изобретатель</x:String>
+                    <x:String>Волшебник</x:String>
+                    <x:String>Бард</x:String>
+                    <x:String>Варвар</x:String>
+                    <x:String>Друид</x:String>
+                    <x:String>Чародей</x:String>-->
+                </Picker.Items>
+            </Picker>
+            <Label  x:Name="MyFrame" Background="AliceBlue" IsVisible="False"  Margin="0,59,0,0"></Label>
+
+            <!--Воин-->
+
+            <ScrollView  >
+                <StackLayout Margin="15, 15, 15, 15">
+                    <StackLayout x:Name="WarriorSL" IsVisible="false">
+
+                        <Label>
+
+                            ХИТЫ
+Кость Хитов: 1к10 за каждый уровень воина
+
+Хиты на 1 уровне: 10 + модификатор Телосложения
+
+Хиты на следующих уровнях: 1к10 (или 6) + модификатор Телосложения (суммарно минимум 1) за каждый уровень воина после первого
+
+
+ВЛАДЕНИЕ
+Доспехи: Все доспехи, щиты
+
+Оружие: Простое оружие, воинское оружие
+
+Инструменты: Нет
+
+Спасброски: Сила, Телосложение
+
+Навыки: Выберите два навыка из следующих: Акробатика, Атлетика, Восприятие, Выживание, Запугивание, История, Проницательность, Уход за животными
+
+                        </Label>
+
+                        <StackLayout RadioButtonGroup.GroupName="Wweapon"  Margin="10, 10, 10, 10">
+                            <RadioButton x:Name="BattleWeapon2" CheckedChanged="BattleWeapon2_CheckedChanged"  Content="2 воинских оружия" FontSize="Small"/>
+                            <RadioButton x:Name="shieldAndBattleWeapon" CheckedChanged="shieldAndBattleWeapon_CheckedChanged"  Content="воинское оружие и щит" FontSize="Small"/>
+                        </StackLayout>
+
+                        <StackLayout x:Name="WeaponWar2" IsVisible="false">
+                            <Picker x:Name="WWeapon1" SelectedIndexChanged="WWeapon1_SelectedIndexChanged"  Margin="10,5,15,2">
+                                <Picker.Items>
+                                    <x:String>боевой топор</x:String>
+                                    <x:String>короткий меч</x:String>
+                                    <x:String>Боевой молот</x:String>
+
+                                </Picker.Items>
+
+                            </Picker>
+                            <Picker x:Name="WWeapon2" SelectedIndexChanged="WWeapon2_SelectedIndexChanged"  Margin="10,5,15,2">
+                                <Picker.Items>
+                                    <x:String>боевой топор</x:String>
+                                    <x:String>короткий меч</x:String>
+                                    <x:String>Боевой молот</x:String>
+
+                                </Picker.Items>
+                            </Picker>
+                        </StackLayout>
+
+                        <StackLayout x:Name="ShildAndWeaponSL" IsVisible="false">
+                            <Picker x:Name="shildAndWeapon" SelectedIndexChanged="WWeapon1_SelectedIndexChanged"  Margin="10,5,15,2">
+                                <Picker.Items>
+                                    <x:String>боевой топор</x:String>
+                                    <x:String>короткий меч</x:String>
+                                    <x:String>Боевой молот</x:String>
+                                </Picker.Items>
+
+                            </Picker>
+
+                        </StackLayout>
+
+                        <StackLayout Margin="10, 20, 10, 10">
+                            <RadioButton Content="кольчуга" FontSize="Small"/>
+                            <RadioButton Content="кожаный доспех, длинный лук и 20 стрел" FontSize="Small"/>
+                        </StackLayout>
+                        <!-- <StackLayout Margin="10, 20, 10, 10">
+                            <RadioButton Content="лёгкий арбалет и 20 болтов" FontSize="Small"/>
+                            <RadioButton Content="два ручных топора" FontSize="Small"/>
+                        </StackLayout>
+                        <StackLayout Margin="10, 20, 10, 10">
+                            <RadioButton Content="набор исследователя подземелий" FontSize="Small"/>
+                            <RadioButton Content="набор путешественника" FontSize="Small"/>
+                        </StackLayout> -->
+
+
+                        <Label x:Name="SecondBreath">
+                            .               
+    ВТОРОЕ ДЫХАНИЕ
+                
+    1-й уровень, умение воина
+
+    Вы обладаете ограниченным источником выносливости, которым можете воспользоваться, чтобы уберечь себя. В свой ход вы можете бонусным действием восстановить хиты в размере 1к10 + ваш уровень воина.
+
+    Использовав это умение, вы должны завершить короткий либо продолжительный отдых, чтобы получить возможность использовать его снова.
+                        </Label>
+                        <Label
+                
+                    x:Name="BattleStyleW"
+                    Text="Боевой стиль"
+                    FontSize="Medium"
+                 />
+                        <Label
+                
+                 
+                >
+                            Вы выбираете боевой стиль, соответствующий вашей специализации. Выберите один из следующих вариантов. Вы не можете выбирать один и тот же вариант боевого стиля, даже если позже у вас будет возможность выбрать еще один стиль.</Label>
+                        <Picker x:Name="BSPickW" SelectedIndexChanged="BattleStylePickerW_BattleStylePickerW">
+                            <Picker.Items>
+                                <x:String>Оборона</x:String>
+                                <x:String>Защита</x:String>
+                                <x:String>Мастер двуручного оружия</x:String>
+                                <x:String>Сражение двумя оружиями</x:String>
+                                <x:String>Стрельба</x:String>
+                                <x:String>Дуэлянт</x:String>
+
+                            </Picker.Items>
+                        </Picker>
+
+                        <Label x:Name="BSDeffense" IsVisible="false">
+
+                            Оборона
+                
+    Пока вы носите доспехи, вы получаете бонус +1 к КД.
+                        </Label>
+                        <Label x:Name="BSProtection" IsVisible="false" >
+                            .               
+                    Защита
+                    
+    Если существо, которое вы видите, атакует не вас, а другое существо, находящееся в пределах 5 футов от вас, вы можете реакцией создать помеху его броску атаки. Для этого вы должны использовать щит.
+                        </Label>
+                        <Label x:Name="BSDuel" IsVisible="false" >
+                            .               
+                    Дуэлянт
+                    
+    Пока вы держите рукопашное оружие в одной руке и не используете другого оружия, вы получаете бонус +2 к броскам урона этим оружием.</Label>
+                        <Label x:Name="BSGreateWeapon" IsVisible="false" >
+                            .               
+                    Сражение большим оружием
+                    
+    Если у вас выпало «1» или «2» на кости урона оружия при атаке, которую вы совершали рукопашным оружием, удерживая его двумя руками, то вы можете перебросить эту кость, и должны использовать новый результат, даже если снова выпало «1» или «2». Чтобы воспользоваться этим преимуществом, ваше оружие должно иметь свойство « двуручное» или «универсальное».</Label>
+                        <Label x:Name="BSTwoWeaponFight" IsVisible="false" >
+                            .               
+                   Сражение двумя оружиями
+                    
+    Если вы сражаетесь двумя оружиями, вы можете добавить модификатор характеристики к урону от второй атаки.</Label>
+                        <Label x:Name="BSShooting" IsVisible="false" >
+                            .               
+                    Стрельба
+                    
+    Вы получаете бонус +2 к броску атаки, когда атакуете дальнобойным оружием.</Label>
+
+                    </StackLayout>
+
+
+                    <!--Плут-->
+
+
+                    <StackLayout x:Name="RogueSL" IsVisible="false">
+
+                        <Label>
+                            ХИТЫ
+Кость Хитов: 1к8 за каждый уровень плута
+
+Хиты на 1 уровне: 8 + модификатор Телосложения
+
+Хиты на следующих уровнях: 1к8 (или 5) + модификатор Телосложения (суммарно минимум 1) за каждый уровень плута после первого
+
+
+ВЛАДЕНИЕ
+Доспехи: Лёгкие доспехи
+
+Оружие: Простое оружие, ручные арбалеты, длинные мечи, рапиры, короткие мечи
+
+Инструменты: Воровские инструменты
+
+Спасброски: Ловкость, Интеллект
+
+Навыки: Выберите четыре навыка из следующих: Акробатика, Атлетика, Восприятие, Выступление, Запугивание, Ловкость рук, Обман, Проницательность, Расследование, Скрытность, Убеждение.
+                        </Label>
+                        <Label x:Name="SneakAttackW" Text="скрытая атака" FontSize="Medium" />
+                        <Label x:Name="SneakAttackText" >
+
+                        </Label>
+                        <Label x:Name="SneakAttack" >
+
+                            Скрытая атака
+                
+    1-й уровень, умение плута
+
+Вы знаете, как точно наносить удар и использовать отвлечение врага. Один раз в ход вы можете причинить дополнительный урон 1к6 одному из существ, по которому вы попали атакой, совершённой с преимуществом к броску атаки. Атака должна использовать дальнобойное оружие или оружие со свойством «фехтовальное». Вам не нужно иметь преимущество при броске атаки, если другой враг цели находится в пределах 5 футов от неё. Этот враг не должен быть недееспособным, и у вас не должно быть помехи для броска атаки.
+
+Дополнительный урон увеличивается, когда вы получаете уровни в этом классе, как показано в колонке «скрытая атака».
+                        </Label>
+
+                    </StackLayout>
+
+
+                    <!--Монах-->
+
+
+                    <StackLayout x:Name="MonkSL" IsVisible="false">
+
+                    </StackLayout>
+
+                </StackLayout>
+
+            </ScrollView>
+        </StackLayout>
+    </ContentPage>
+
+    <ContentPage Title="Расса">
+
+        <StackLayout>
+            <Label x:Name="HeroClass_header" Text="Рассы" FontSize="Medium"/>
+            <Picker x:Name="RacePick" SelectedIndexChanged="RacePick_SelectedIndexChanged">
+                <Picker.Items>
+                    <x:String>Человек</x:String>
+                    <x:String>Дварф</x:String>
+                    <x:String>Эльф</x:String>
+                    <x:String>Полуэльф</x:String>
+                    <x:String>Полуорк</x:String>
+                    <x:String>Полурослик</x:String>
+
+                </Picker.Items>
+            </Picker>
+        </StackLayout>
+
+
+    </ContentPage>
+    <ContentPage Title="БИО">
+        <StackLayout>
+            <Label Text="Имя персонажа"  FontSize="Large" />
+            <Entry x:Name="HeroName" TextChanged="HeroName_TextChanged" Text="Безымянный герой"></Entry>
+
+
+        </StackLayout>
+
+    </ContentPage>
+
+    <ContentPage Title="Таймер">
+
+        <StackLayout>
+            <Label x:Name="tamtx" Text="0:00:000"
+                HorizontalOptions="Center" 
+                   Margin="30, 0, 30, 0"></Label>
+
+            <StackLayout Orientation="Horizontal" 
+                         HorizontalOptions="Center">
+
+                <Button Clicked="sdV_start" Text="Старт" ></Button>
+                <Button x:Name="btnStart" Clicked="sdV_stop"  Text="Стоп"></Button>
+                <Button Clicked="sdV_Reset" Text="Рестарт"></Button>
+
+
+            </StackLayout>
+
+        </StackLayout>
+
+    </ContentPage>
+    <!--<ContentPage Title="заклинания">
+       
+        
+        
+        
+        
+        
+        
+    </ContentPage>-->
+    <ContentPage Title="Итог">
+        <StackLayout>
+            <Label x:Name="Result_Name" Text="Безымянный герой" FontSize="Large" FontAttributes="Bold"></Label>
+            <Label x:Name="result_Class" Text="ВЫ НЕ ВЫБРАЛИ КЛАСС" FontSize="Medium" TextColor="red"/>
+            <Label x:Name="result_Race" Text="ВЫ НЕ ВЫБРАЛИ РАССУ" FontSize="Medium" TextColor="red"/>
+
+
+        </StackLayout>
+
+
+
+    </ContentPage>
+</TabbedPage>
