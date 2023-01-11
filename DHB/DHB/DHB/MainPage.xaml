@@ -9,19 +9,54 @@
 
 
     <ContentPage.Content>
-
-        <StackLayout   VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-            <Button
+        <ScrollView>
+            <StackLayout   VerticalOptions="FillAndExpand"
+                           HorizontalOptions="FillAndExpand"
+                           Margin="15,15,15,1">
+                <Button
                 x:Name="NewHeroBtn" 
                 Clicked="OpenCreator" 
                 BackgroundColor="#2196f3" 
                 TextColor="white" 
-                Margin="15,15,15,1" 
+                 
                 BorderColor="#0f58ab" 
                 Text="Создать нового героя" 
                 CornerRadius="15" 
                 BorderWidth="2"/>
-        </StackLayout>
+                <StackLayout>
+                    <CollectionView
+                        x:Name="CollectionView"
+                        
+                        SelectionMode="Single"
+                        SelectionChanged="CollectionView_SelectionChanged">
+                        <CollectionView.ItemsLayout>
+                            <LinearItemsLayout
+                                Orientation="Vertical"
+                                ItemSpacing="10"                                
+                                >
+
+                            </LinearItemsLayout>
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout
+                                    BackgroundColor="#2196f3"
+                                    Padding="5, 15, 15, 15"
+                                    >
+
+                                    <Label  FontSize="30" TextColor="White" Text="{Binding Name}"/>
+                                    <Label FontSize="20" TextColor="White" Text="{Binding HeroClass}"/>
+                                    <Label FontSize="20" TextColor="White" Text= "{Binding HeroRace}"/>
+                                </StackLayout>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+
+
+                    </CollectionView>
+                </StackLayout>
+            </StackLayout>
+
+        </ScrollView>
     </ContentPage.Content>
 
 

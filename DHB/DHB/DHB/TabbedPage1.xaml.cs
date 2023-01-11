@@ -1,17 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Net.WebSockets;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-
+using DHB.Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
+
+
 namespace DHB
 {
+    
 
     public partial class TabbedPage1 : TabbedPage
     {
@@ -22,6 +27,7 @@ namespace DHB
         public TabbedPage1()
         {
             InitializeComponent();
+            BindingContext= new Heroes();
             stopwatch = new Stopwatch();
             stopwatch.Reset();
         }
@@ -32,23 +38,27 @@ namespace DHB
             result_Class.TextColor= Color.Black;
             string a = picker.SelectedItem.ToString();
 
+            MonkSL.IsVisible= false;
+            WarriorSL.IsVisible = false;
+            RogueSL.IsVisible = false;
+            BarbarianSL.IsVisible = false;
+
             if (picker.SelectedIndex == 0)
             {
                 WarriorSL.IsVisible = true;
-                RogueSL.IsVisible = false;
-
             }
-
             if (picker.SelectedIndex == 1)
             {
-                WarriorSL.IsVisible = false;
                 RogueSL.IsVisible = true;
             }
             if (picker.SelectedIndex == 2)
             {
-                
+                MonkSL.IsVisible = true;
             }
-            
+            if (picker.SelectedIndex == 3)
+            {
+                BarbarianSL.IsVisible = true;
+            }
             if (picker.SelectedIndex == 12)
             {
                 
@@ -63,63 +73,37 @@ namespace DHB
         }
         void BattleStylePickerW_BattleStylePickerW(object sender, EventArgs e)
         {
-            
+            BSDeffense.IsVisible = false;
+            BSProtection.IsVisible = false;
+            BSTwoWeaponFight.IsVisible = false;
+            BSGreateWeapon.IsVisible = false;
+            BSDuel.IsVisible = false;
+            BSShooting.IsVisible = false;
             string b = BSPickW.SelectedItem.ToString();
             
             if (BSPickW.SelectedIndex == 0)
             {
                 BSDeffense.IsVisible = true;
-                BSProtection.IsVisible = false;
-                BSTwoWeaponFight.IsVisible = false;
-                BSGreateWeapon.IsVisible = false;
-                BSDuel.IsVisible = false;
-                BSShooting.IsVisible = false;
             }
-
-            if (BSPickW.SelectedIndex == 1)
-            {
-                BSDeffense.IsVisible = false;
+            if (BSPickW.SelectedIndex == 1) 
+            { 
                 BSProtection.IsVisible = true;
-                BSTwoWeaponFight.IsVisible = false;
-                BSGreateWeapon.IsVisible = false;
-                BSDuel.IsVisible = false;
-                BSShooting.IsVisible = false;
             }
             if (BSPickW.SelectedIndex == 2)
             {
-                BSDeffense.IsVisible = false;
-                BSProtection.IsVisible = false;
-                BSTwoWeaponFight.IsVisible = false;
                 BSGreateWeapon.IsVisible = true;
-                BSDuel.IsVisible = false;
-                BSShooting.IsVisible = false;
             }
             if (BSPickW.SelectedIndex == 3)
             {
-                BSDeffense.IsVisible = false;
-                BSProtection.IsVisible = false;
                 BSTwoWeaponFight.IsVisible = true;
-                BSGreateWeapon.IsVisible = false;
-                BSDuel.IsVisible = false;
-                BSShooting.IsVisible = false;
             }
             if (BSPickW.SelectedIndex == 4)
             {
-                BSDeffense.IsVisible = false;
-                BSProtection.IsVisible = false;
-                BSTwoWeaponFight.IsVisible = false;
-                BSGreateWeapon.IsVisible = false;
-                BSDuel.IsVisible = false;
                 BSShooting.IsVisible = true;
             }
             if (BSPickW.SelectedIndex == 5)
             {
-                BSDeffense.IsVisible = false;
-                BSProtection.IsVisible = false;
-                BSTwoWeaponFight.IsVisible = false;
-                BSGreateWeapon.IsVisible = false;
                 BSDuel.IsVisible = true;
-                BSShooting.IsVisible = false;
             }
 
         }
@@ -135,7 +119,7 @@ namespace DHB
         {
             Result_Name.Text = HeroName.Text;
         }
-
+        //таймер
         private void sdV_start(object sender, EventArgs e)
         {
             if (!stopwatch.IsRunning)
@@ -165,6 +149,8 @@ namespace DHB
             stopwatch.Reset();
         }
 
+
+        //
         private void WWeapon1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -174,14 +160,14 @@ namespace DHB
 
         private void BattleWeapon2_CheckedChanged(object sender, CheckedChangedEventArgs e)
         {
+            WeaponWar2.IsVisible = false;
+            ShildAndWeaponSL.IsVisible = false;
             if (BattleWeapon2.IsChecked == true)
             {
                 WeaponWar2.IsVisible= true;
-                ShildAndWeaponSL.IsVisible = false;
             }
             else
             {
-                WeaponWar2.IsVisible = false;
                 ShildAndWeaponSL.IsVisible = true;
             }
         }
@@ -195,6 +181,33 @@ namespace DHB
         {
 
         }
-    }
 
+        private async void HSave_Clicked(object sender, EventArgs e)
+        {
+           Heroes heroes = (Heroes)BindingContext;
+
+            if (!string.IsNullOrEmpty(heroes.Name))
+            {
+                await MainPage.HeroesDB.SaveHeroesAsync(heroes);
+            }
+            // await Shell.Current.GoToAsync("..");
+            await Navigation.PopToRootAsync();
+
+
+        }
+
+        
+
+        
+
+        
+
+    }
 }
+
+
+
+
+
+
+
