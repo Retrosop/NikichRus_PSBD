@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DHB.TabbedPage1"
+            Title="Создание персонажа"
+            
+            >
+    <!--Pages can be added as references or inline-->
+
+
+    <ContentPage Title="БИО">
+        <StackLayout>
+            <Label Text="Имя персонажа"  FontSize="Large" />
+            <Entry x:Name="HeroName"  Text="{Binding Name}" Placeholder="ФИО"  TextChanged="HeroName_TextChanged" ></Entry>
+            <Entry x:Name="HeroClass"  Text="{Binding HeroClass}" Placeholder="Телефон"  TextChanged="HeroName_TextChanged" ></Entry>
+            <Entry x:Name="HeroRace"  Text="{Binding HeroRace}" Placeholder="E-mail"  TextChanged="HeroName_TextChanged" ></Entry>
+            <Button x:Name="HSave" Text="Сохранить" Clicked="HSave_Clicked" Margin="140,0,140,0"></Button>
+        </StackLayout>
+
+    </ContentPage>
+
+
+        
+
+
+
+    
+</TabbedPage>
